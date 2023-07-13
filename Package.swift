@@ -13,16 +13,20 @@ let package = Package(
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "TaylorCommon",
-            targets: ["TaylorCommon"]),
+            targets: ["TaylorCommon"]
+        ),
     ],
     dependencies: [
         .package(url: "https://github.com/ActuallyTaylor/HydrogenReporter", from: "1.0.0"),
-        .package(url: "https://github.com/evgenyneu/keychain-swift", from: "20.0.0")
+        .package(url: "https://github.com/evgenyneu/keychain-swift", from: "20.0.0"),
     ],
     targets: [
         .target(
             name: "TaylorCommon",
-            dependencies: ["HydrogenReporter", "KeychainSwift"]
+            dependencies: [
+                .product(name: "HydrogenReporter", package: "HydrogenReporter"),
+                .product(name: "KeychainSwift", package: "keychain-swift")
+            ]
         ),
     ]
 )
